@@ -961,11 +961,22 @@ footer {
     </p>
 
     <div class="waitlist-form">
-      <input type="email" class="email-input" placeholder="Enter your email address">
-      <button class="submit-btn">Join Waitlist →</button>
+      <input type="email" class="email-input" id="waitlist-email" placeholder="Enter your email address">
+      <button class="submit-btn" onclick="joinWaitlist()">Join Waitlist →</button>
     </div>
 
     <p class="form-note">Free to join. No credit card. Cancel anytime.</p>
+
+    <script>
+    function joinWaitlist() {
+      const email = document.getElementById('waitlist-email').value;
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLSe4Ftk6rdlh7hf2aegB4KS4a8ksE3Bkq0kWa7H1JigqYThBqg/viewform', '_blank');
+    }
+    </script>
 
   </div>
 </section>
