@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PathPro — Every Athlete Deserves a Lane</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #080C14;
+  color: #F4F7FF;
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NAVIGATION ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,12,20,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: #F4F7FF;
+  text-decoration: none;
+}
+
+.nav-logo span { color: #00D4F5; }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #7A8BA8;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #F4F7FF; }
+
+.nav-cta {
+  background: #2560E8 !important;
+  color: #ffffff !important;
+  padding: 10px 22px;
+  border-radius: 8px;
+}
+
+.nav-cta:hover { background: #3B6FF0 !important; }
+
+/* ── HERO SECTION ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 60px 80px;
+  position: relative;
+  overflow: hidden;
+  background: #080C14;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(24,71,200,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24,71,200,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse at center, rgba(24,71,200,0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(24,71,200,0.15);
+  border: 1px solid rgba(24,71,200,0.35);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #00D4F5;
+  margin-bottom: 28px;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow-dot {
+  width: 6px; height: 6px;
+  background: #00D4F5;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 10vw, 140px);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title .word-solid { color: #F4F7FF; display: block; }
+.hero-title .word-outline { color: transparent; -webkit-text-stroke: 2px rgba(244,247,255,0.5); display: block; }
+.hero-title .word-highlight { color: #00D4F5; }
+
+.hero-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 600;
+  color: #B8C8E0;
+  max-width: 580px;
+  line-height: 1.45;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2560E8;
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.25s;
+}
+
+.btn-primary:hover {
+  background: #3060EC;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37,96,232,0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #B8C8E0;
+  padding: 16px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.25s;
+}
+
+.btn-secondary:hover {
+  color: #F4F7FF;
+  border-color: rgba(255,255,255,0.5);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.hero-stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  color: #F4F7FF;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.hero-stat-number span { color: #00D4F5; }
+.hero-stat-label { font-size: 12px; color: #B8C8E0; margin-top: 4px; font-weight: 500; }
+
+/* ── PROBLEM SECTION ── */
+#problem {
+  padding: 120px 60px;
+  background: #080C14;
+  position: relative;
+}
+
+.problem-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #00D4F5;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 5vw, 72px);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  color: #F4F7FF;
+}
+
+.section-heading .outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(244,247,255,0.45);
+}
+
+.body-text {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #B8C8E0;
+  margin-bottom: 20px;
+}
+
+.body-text strong { color: #ffffff; font-weight: 600; }
+
+.problem-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.problem-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  font-size: 14px;
+  color: #C4D0E3;
+  line-height: 1.5;
+}
+
+.problem-list-item span { font-size: 18px; flex-shrink: 0; }
+
+.pull-quote {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #F4F7FF;
+  padding-left: 28px;
+  border-left: 3px solid #2560E8;
+}
+
+.pull-quote em {
+  font-style: normal;
+  color: #00D4F5;
+}
+
+/* ── FEATURES SECTION ── */
+#features {
+  padding: 120px 60px;
+  background: #0D1625;
+  position: relative;
+}
+
+#features::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(24,71,200,0.5), rgba(0,212,245,0.5), transparent);
+}
+
+.features-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 80px;
+}
+
+.features-header p {
+  font-size: 16px;
+  color: #B8C8E0;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37,96,232,0.35);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.feature-icon-box {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: rgba(37,96,232,0.15);
+  border: 1px solid rgba(37,96,232,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.feature-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  color: #F4F7FF;
+}
+
+.feature-description {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #B0BDD4;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.badge-free { background: rgba(16,185,129,0.1); color: #10B981; border: 1px solid rgba(16,185,129,0.25); }
+.badge-pro { background: rgba(240,165,0,0.1); color: #F0A500; border: 1px solid rgba(240,165,0,0.25); }
+
+/* ── MISSION SECTION ── */
+#mission {
+  padding: 160px 60px;
+  background: #080C14;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(24,71,200,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 50%, rgba(0,212,245,0.06) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.mission-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7vw, 110px);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.mission-heading .ghost { color: transparent; -webkit-text-stroke: 2px rgba(244,247,255,0.38); }
+.mission-heading .solid { color: #F4F7FF; }
+.mission-heading .accent { color: #00D4F5; }
+
+.mission-body {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #B8C8E0;
+  max-width: 560px;
+  margin: 0 auto 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.mission-body strong { color: #ffffff; font-weight: 700; }
+
+/* ── SPORTS SECTION ── */
+#sports {
+  padding: 80px 60px 120px;
+  background: #0D1625;
+  position: relative;
+}
+
+#sports::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37,96,232,0.5), transparent);
+}
+
+.sports-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.sports-header p {
+  font-size: 16px;
+  color: #B8C8E0;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.sports-grid {
+  display: flex;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sport-card {
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 180px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.sport-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(37,96,232,0.35);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+}
+
+.sport-card.featured {
+  border-color: rgba(37,96,232,0.3);
+  background: linear-gradient(160deg, #111827, #0D1625);
+}
+
+.sport-card.featured::before {
+  content: 'LAUNCHING FIRST';
+  position: absolute;
+  top: 10px; right: -28px;
+  background: #2560E8;
+  color: white;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 3px 36px;
+  transform: rotate(45deg);
+}
+
+.sport-emoji { font-size: 40px; margin-bottom: 12px; display: block; }
+
+.sport-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  color: #F4F7FF;
+}
+
+.sport-status { font-size: 10px; color: #7A8BA8; }
+.sport-status.active { color: #2560E8; font-weight: 700; }
+
+/* ── WAITLIST SECTION ── */
+#waitlist {
+  padding: 140px 60px;
+  background: #080C14;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#waitlist::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(37,96,232,0.14) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+#waitlist::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, #2560E8 30%, #00D4F5 70%, transparent 100%);
+}
+
+.waitlist-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.waitlist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,212,245,0.08);
+  border: 1px solid rgba(0,212,245,0.22);
+  border-radius: 100px;
+  padding: 7px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #00D4F5;
+  margin-bottom: 32px;
+}
+
+.waitlist-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 0.93;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #F4F7FF;
+}
+
+.waitlist-heading span { color: #00D4F5; }
+
+.waitlist-subtext {
+  font-size: 17px;
+  color: #B8C8E0;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.waitlist-form {
+  display: flex;
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+.email-input {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 15px;
+  color: #F4F7FF;
+  font-family: 'Barlow', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.email-input::placeholder { color: #3A4A62; }
+.email-input:focus { border-color: rgba(37,96,232,0.6); background: rgba(37,96,232,0.06); }
+
+.submit-btn {
+  background: linear-gradient(135deg, #2560E8, #2B6EFF);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 28px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  white-space: nowrap;
+  transition: all 0.25s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37,96,232,0.4);
+}
+
+.form-note {
+  font-size: 12px;
+  color: #3A4A62;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #0D1625;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 48px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: #F4F7FF;
+}
+
+.footer-logo span { color: #00D4F5; }
+.footer-tagline { font-size: 13px; color: #3A4A62; margin-top: 4px; font-style: italic; }
+.footer-copy { font-size: 12px; color: #3A4A62; text-align: right; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .problem-inner { grid-template-columns: 1fr; gap: 48px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #hero { padding: 120px 24px 60px; }
+  #problem, #features, #mission, #sports, #waitlist { padding-left: 24px; padding-right: 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 28px; }
+  .waitlist-form { flex-direction: column; }
+  footer { flex-direction: column; gap: 20px; text-align: center; }
+  .footer-copy { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">PATH<span>PRO</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#problem">Mission</a></li>
+    <li><a href="#sports">Sports</a></li>
+    <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
+    AI-Powered · Youth Sports Development
+  </div>
+
+  <h1 class="hero-title">
+    <span class="word-solid">EVERY</span>
+    <span class="word-outline">ATHLETE</span>
+    <span class="word-solid">DESERVES</span>
+    <span class="word-solid">A <span class="word-highlight">LANE.</span></span>
+  </h1>
+
+  <p class="hero-subtitle">
+    PathPro is the AI career engine that gives every young athlete
+    <strong>the personalized roadmap, training plan, and daily guidance</strong>
+    that used to cost a fortune — or never existed at all.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="#waitlist" class="btn-primary">
+      Get Early Access
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#features" class="btn-secondary">See How It Works</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-number">3<span>M+</span></div>
+      <div class="hero-stat-label">Youth Soccer Players in the U.S.</div>
+    </div>
+    <div>
+      <div class="hero-stat-number">6</div>
+      <div class="hero-stat-label">Sports at Launch (and growing)</div>
+    </div>
+    <div>
+      <div class="hero-stat-number"><span>$</span>0</div>
+      <div class="hero-stat-label">Cost to Start — Free Tier Forever</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROBLEM SECTION
+══════════════════════════════════════ -->
+<section id="problem">
+  <div class="problem-inner">
+
+    <div>
+      <div class="section-label">The Problem</div>
+      <h2 class="section-heading">
+        TALENT<br>
+        IS <span class="outline-text">EVERYWHERE.</span><br>
+        OPPORTUNITY<br>
+        ISN'T.
+      </h2>
+      <p class="body-text">
+        The kids who figure out their path are usually the ones whose
+        <strong>parents played the sport</strong>, or whose family has money
+        for private coaches and agents. That's not talent — that's access.
+      </p>
+      <p class="body-text">
+        Most young athletes have real potential and real dreams but
+        <strong>zero direction</strong>. They don't know what to work on,
+        which clubs to join, or how to get on a college scout's radar.
+        And nobody around them does either.
+      </p>
+
+      <ul class="problem-list">
+        <li class="problem-list-item"><span>😤</span>No personalized plan built for their age and skill level</li>
+        <li class="problem-list-item"><span>💸</span>Parents spending thousands on random camps with no strategy</li>
+        <li class="problem-list-item"><span>🥋</span>Martial arts athletes training for years with no competitive roadmap</li>
+        <li class="problem-list-item"><span>🏃</span>Sprinters with real talent who don't know how college recruiting works</li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="pull-quote">
+        "Not everyone can afford a mentor.<br>
+        Not everyone has a parent who knows the pipeline.<br><br>
+        But <em>every athlete</em> deserves a lane."
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FEATURES SECTION
+══════════════════════════════════════ -->
+<section id="features">
+  <div class="features-header">
+    <div class="section-label">What PathPro Does</div>
+    <h2 class="section-heading" style="text-align:center;">THE ONLY APP<br>YOU'LL NEED</h2>
+    <p>No coaches required. No registration gates. Just AI that works for the athlete from day one.</p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon-box">🗺️</div>
+      <div class="feature-title">AI Career Pathway</div>
+      <p class="feature-description">A personalized roadmap built around your age, sport, position, and goals. 30-day, 6-month, and 2-year targets that update as you grow. The AI is the coach.</p>
+      <span class="badge badge-free">Free</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">⚡</div>
+      <div class="feature-title">AI Training Plans</div>
+      <p class="feature-description">Weekly position-specific, age-appropriate training schedules. Every drill laid out with timing and instructions detailed enough to run solo. Regenerates every 2 weeks.</p>
+      <span class="badge badge-pro">Premium</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">📍</div>
+      <div class="feature-title">AI Location Map</div>
+      <p class="feature-description">Finds clubs, gyms, training facilities, and open fields near you automatically. No venue sign-ups needed — pulls from live location data and community submissions.</p>
+      <span class="badge badge-free">Free</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">🔥</div>
+      <div class="feature-title">Streak System</div>
+      <p class="feature-description">Daily and weekly streaks with badges, milestone rewards, and leaderboards. Consistency is the real differentiator — PathPro makes showing up feel like winning.</p>
+      <span class="badge badge-free">Free</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">🤖</div>
+      <div class="feature-title">Weekly AI Check-In</div>
+      <p class="feature-description">Every Sunday, a personalized AI message based on your actual logged week — what you did, what it means, and one clear focus for the week ahead.</p>
+      <span class="badge badge-pro">Premium</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">👨‍👩‍👧</div>
+      <div class="feature-title">Parent Dashboard</div>
+      <p class="feature-description">A separate view for parents to follow along with their kid's pathway, logged sessions, and monthly progress reports. Stay invested without micromanaging.</p>
+      <span class="badge badge-pro">Premium</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MISSION SECTION
+══════════════════════════════════════ -->
+<section id="mission">
+  <div class="mission-glow"></div>
+
+  <div class="section-label" style="position:relative;z-index:1;">Our Purpose</div>
+
+  <h2 class="mission-heading">
+    <span class="ghost">BUILT </span>
+    <span class="solid">FOR THE KID</span><br>
+    <span class="solid">WHO HAS </span>
+    <span class="accent">THE DREAM</span><br>
+    <span class="ghost">BUT NOT THE </span>
+    <span class="solid">LANE.</span>
+  </h2>
+
+  <p class="mission-body">
+    PathPro exists because <strong>talent is not the problem</strong>. Direction is.
+    We're building the platform that acts as every young athlete's personal
+    development system — the kind of guidance that used to be reserved for the privileged few.
+  </p>
+
+  <a href="#waitlist" class="btn-primary" style="display:inline-flex;margin:0 auto;position:relative;z-index:1;">
+    Get Early Access
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════
+     SPORTS SECTION
+══════════════════════════════════════ -->
+<section id="sports">
+  <div class="sports-header">
+    <div class="section-label">Multi-Sport Platform</div>
+    <h2 class="section-heading" style="text-align:center;">WHATEVER YOU<br>PLAY, WE'VE<br>GOT YOUR LANE</h2>
+    <p>Starting with soccer. Built to grow. Every sport has athletes walking around with no direction — PathPro is coming for all of them.</p>
+  </div>
+
+  <div class="sports-grid">
+    <div class="sport-card featured">
+      <span class="sport-emoji">⚽</span>
+      <div class="sport-name">Soccer</div>
+      <div class="sport-status active">Launching First</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-emoji">🥋</span>
+      <div class="sport-name">Martial Arts</div>
+      <div class="sport-status">Coming Soon</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-emoji">🏀</span>
+      <div class="sport-name">Basketball</div>
+      <div class="sport-status">Coming Soon</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-emoji">🏃</span>
+      <div class="sport-name">Track & Field</div>
+      <div class="sport-status">Coming Soon</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-emoji">🏊</span>
+      <div class="sport-name">Swimming</div>
+      <div class="sport-status">Coming Soon</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-emoji">🏐</span>
+      <div class="sport-name">Volleyball</div>
+      <div class="sport-status">Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     WAITLIST SECTION
+══════════════════════════════════════ -->
+<section id="waitlist">
+  <div class="waitlist-inner">
+
+    <div class="waitlist-badge">🚀 Early Access Open</div>
+
+    <h2 class="waitlist-heading">
+      GET YOUR<br>
+      <span>LANE</span><br>
+      FIRST.
+    </h2>
+
+    <p class="waitlist-subtext">
+      PathPro is building right now. Join the waitlist and be first
+      in line when we launch — no spam, just your spot saved.
+    </p>
+
+    <div class="waitlist-form">
+      <input type="email" class="email-input" placeholder="Enter your email address">
+      <button class="submit-btn">Join Waitlist →</button>
+    </div>
+
+    <p class="form-note">Free to join. No credit card. Cancel anytime.</p>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="footer">
+  <div>
+    <div class="footer-logo">PATH<span>PRO</span></div>
+    <div class="footer-tagline">Every athlete deserves a lane.</div>
+  </div>
+  <div class="footer-copy">
+    <div>© 2026 PathPro. All rights reserved.</div>
+    <div style="margin-top:6px;color:#2A3A55;">Built for athletes who want more than just potential.</div>
+  </div>
+</footer>
+
+</body>
+</html>
