@@ -960,23 +960,13 @@ footer {
       in line when we launch — no spam, just your spot saved.
     </p>
 
-    <div class="waitlist-form">
-      <input type="email" class="email-input" id="waitlist-email" placeholder="Enter your email address">
-      <button class="submit-btn" onclick="joinWaitlist()">Join Waitlist →</button>
-    </div>
+    <form action="https://app.us2.list-manage.com/subscribe/post?u=eecfabc4c7fff7e41c06f8249&id=30350224a1&f_id=005ac2e1f0" method="post" target="_blank" style="display:flex;gap:12px;max-width:500px;margin:0 auto 20px;flex-wrap:wrap;">
+      <input type="email" name="EMAIL" class="email-input" placeholder="Enter your email address" required style="flex:1;min-width:200px;">
+      <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_eecfabc4c7fff7e41c06f8249_30350224a1" tabindex="-1" value=""></div>
+      <button type="submit" class="submit-btn">Join Waitlist →</button>
+    </form>
 
     <p class="form-note">Free to join. No credit card. Cancel anytime.</p>
-
-    <script>
-    function joinWaitlist() {
-      const email = document.getElementById('waitlist-email').value;
-      if (!email || !email.includes('@')) {
-        alert('Please enter a valid email address.');
-        return;
-      }
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLSe4Ftk6rdlh7hf2aegB4KS4a8ksE3Bkq0kWa7H1JigqYThBqg/viewform', '_blank');
-    }
-    </script>
 
   </div>
 </section>
